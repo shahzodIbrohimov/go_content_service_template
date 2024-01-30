@@ -10,17 +10,20 @@ import (
 type StorageI interface {
 	Position() repo.PositionI
 	Staff() repo.StaffI
+	Tag() repo.TagI
 }
 
 type storagePg struct {
 	position repo.PositionI
 	staff    repo.StaffI
+	tag      repo.TagI
 }
 
 func New(db *db.Postgres, log logger.Logger) StorageI {
 	return &storagePg{
 		position: postgres.NewPositionRepo(db, log),
 		staff:    postgres.NewStaffRepo(db, log),
+		tag:      postgres.NewTagRepo(db, log),
 	}
 }
 
@@ -30,4 +33,8 @@ func (s *storagePg) Position() repo.PositionI {
 
 func (s *storagePg) Staff() repo.StaffI {
 	return s.staff
+}
+
+func (s *storagePg) Tag() repo.TagI {
+	return s.tag
 }

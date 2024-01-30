@@ -54,3 +54,15 @@ CREATE TABLE staff_translates (
   deleted_at TIMESTAMP WITHOUT TIME ZONE,
   CONSTRAINT unique_staff_id_lang UNIQUE (staff_id, lang)
 );
+
+CREATE TABLE tags (
+  id uuid PRIMARY KEY,
+  color varchar NOT NULL,
+  active bool NOT NULL DEFAULT true,
+  title_uz varchar NOT NULL,
+  title_ru varchar NOT NULL,
+  title_en varchar NOT NULL,
+  created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT NOW(),
+  deleted_at TIMESTAMP WITHOUT TIME ZONE
+);

@@ -493,3 +493,241 @@ var StaffService_ServiceDesc = grpc.ServiceDesc{
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "service.proto",
 }
+
+const (
+	TagService_Create_FullMethodName = "/content_service.TagService/Create"
+	TagService_Get_FullMethodName    = "/content_service.TagService/Get"
+	TagService_Find_FullMethodName   = "/content_service.TagService/Find"
+	TagService_Update_FullMethodName = "/content_service.TagService/Update"
+	TagService_Delete_FullMethodName = "/content_service.TagService/Delete"
+)
+
+// TagServiceClient is the client API for TagService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type TagServiceClient interface {
+	Create(ctx context.Context, in *Tag, opts ...grpc.CallOption) (*Tag, error)
+	Get(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Tag, error)
+	Find(ctx context.Context, in *GetListFilter, opts ...grpc.CallOption) (*Tags, error)
+	Update(ctx context.Context, in *Tag, opts ...grpc.CallOption) (*Tag, error)
+	Delete(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Empty, error)
+}
+
+type tagServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewTagServiceClient(cc grpc.ClientConnInterface) TagServiceClient {
+	return &tagServiceClient{cc}
+}
+
+func (c *tagServiceClient) Create(ctx context.Context, in *Tag, opts ...grpc.CallOption) (*Tag, error) {
+	out := new(Tag)
+	err := c.cc.Invoke(ctx, TagService_Create_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tagServiceClient) Get(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Tag, error) {
+	out := new(Tag)
+	err := c.cc.Invoke(ctx, TagService_Get_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tagServiceClient) Find(ctx context.Context, in *GetListFilter, opts ...grpc.CallOption) (*Tags, error) {
+	out := new(Tags)
+	err := c.cc.Invoke(ctx, TagService_Find_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tagServiceClient) Update(ctx context.Context, in *Tag, opts ...grpc.CallOption) (*Tag, error) {
+	out := new(Tag)
+	err := c.cc.Invoke(ctx, TagService_Update_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tagServiceClient) Delete(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Empty, error) {
+	out := new(Empty)
+	err := c.cc.Invoke(ctx, TagService_Delete_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// TagServiceServer is the server API for TagService service.
+// All implementations must embed UnimplementedTagServiceServer
+// for forward compatibility
+type TagServiceServer interface {
+	Create(context.Context, *Tag) (*Tag, error)
+	Get(context.Context, *Id) (*Tag, error)
+	Find(context.Context, *GetListFilter) (*Tags, error)
+	Update(context.Context, *Tag) (*Tag, error)
+	Delete(context.Context, *Id) (*Empty, error)
+	mustEmbedUnimplementedTagServiceServer()
+}
+
+// UnimplementedTagServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedTagServiceServer struct {
+}
+
+func (UnimplementedTagServiceServer) Create(context.Context, *Tag) (*Tag, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedTagServiceServer) Get(context.Context, *Id) (*Tag, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+func (UnimplementedTagServiceServer) Find(context.Context, *GetListFilter) (*Tags, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Find not implemented")
+}
+func (UnimplementedTagServiceServer) Update(context.Context, *Tag) (*Tag, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedTagServiceServer) Delete(context.Context, *Id) (*Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+func (UnimplementedTagServiceServer) mustEmbedUnimplementedTagServiceServer() {}
+
+// UnsafeTagServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to TagServiceServer will
+// result in compilation errors.
+type UnsafeTagServiceServer interface {
+	mustEmbedUnimplementedTagServiceServer()
+}
+
+func RegisterTagServiceServer(s grpc.ServiceRegistrar, srv TagServiceServer) {
+	s.RegisterService(&TagService_ServiceDesc, srv)
+}
+
+func _TagService_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Tag)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TagServiceServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TagService_Create_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TagServiceServer).Create(ctx, req.(*Tag))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TagService_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Id)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TagServiceServer).Get(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TagService_Get_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TagServiceServer).Get(ctx, req.(*Id))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TagService_Find_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetListFilter)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TagServiceServer).Find(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TagService_Find_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TagServiceServer).Find(ctx, req.(*GetListFilter))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TagService_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Tag)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TagServiceServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TagService_Update_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TagServiceServer).Update(ctx, req.(*Tag))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TagService_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Id)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TagServiceServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TagService_Delete_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TagServiceServer).Delete(ctx, req.(*Id))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// TagService_ServiceDesc is the grpc.ServiceDesc for TagService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var TagService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "content_service.TagService",
+	HandlerType: (*TagServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Create",
+			Handler:    _TagService_Create_Handler,
+		},
+		{
+			MethodName: "Get",
+			Handler:    _TagService_Get_Handler,
+		},
+		{
+			MethodName: "Find",
+			Handler:    _TagService_Find_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _TagService_Update_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _TagService_Delete_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "service.proto",
+}

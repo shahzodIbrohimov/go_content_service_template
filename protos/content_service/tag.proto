@@ -1,0 +1,20 @@
+syntax="proto3";
+
+package content_service;
+option go_package ="genproto/content_service";
+
+import "common.proto";
+
+message Tag {
+    string id = 1;
+    MultiLanguage title = 2;
+    bool active = 3;
+    string color = 4;
+    string created_at = 5;
+    string updated_at = 6;
+}
+
+message Tags {
+    int32 count = 1;
+    repeated Tag items = 2;
+}

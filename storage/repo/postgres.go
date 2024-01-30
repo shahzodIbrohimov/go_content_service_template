@@ -21,3 +21,11 @@ type StaffI interface {
 	Update(ctx context.Context, req *pb.Staff) (*pb.Staff, error)
 	Delete(ctx context.Context, req *pb.Id) (*pb.Empty, error)
 }
+
+type TagI interface {
+	Create(ctx context.Context, req *pb.Tag) (*pb.Tag, error)
+	Get(ctx context.Context, req *pb.Id) (*pb.Tag, error)
+	Find(ctx context.Context, req *pb.GetListFilter) (*pb.Tags, error)
+	Update(ctx context.Context, req *pb.Tag) (*pb.Tag, error)
+	Delete(ctx context.Context, req *pb.Id) (*pb.Empty, error)
+}

@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS tags;
 DROP TABLE IF EXISTS stuff_translates;
 DROP TABLE IF EXISTS staffs;
 DROP TABLE IF EXISTS positions;
