@@ -7,6 +7,7 @@ import "staff.proto";
 import "position.proto";
 import "tag.proto";
 import "genre.proto";
+import "category.proto";
 import "common.proto";
 
 
@@ -39,5 +40,13 @@ service GenreService {
     rpc Get(Id) returns (Genre) {};
     rpc Find(GetListFilter) returns (Genres) {};
     rpc Update(Genre) returns (Genre) {};
+    rpc Delete(Id) returns (Empty) {};
+}
+
+service CategoryService {
+    rpc Create(Category) returns (Category) {};
+    rpc Get(Id) returns (Category) {};
+    rpc Find(GetListFilter) returns (Categories) {};
+    rpc Update(Category) returns (Category) {};
     rpc Delete(Id) returns (Empty) {};
 }

@@ -37,3 +37,11 @@ type GenreI interface {
 	Update(ctx context.Context, req *pb.Genre) (*pb.Genre, error)
 	Delete(ctx context.Context, req *pb.Id) (*pb.Empty, error)
 }
+
+type CategoryI interface {
+	Create(ctx context.Context, req *pb.Category) (*pb.Category, error)
+	Get(ctx context.Context, req *pb.Id) (*pb.Category, error)
+	Find(ctx context.Context, req *pb.GetListFilter) (*pb.Categories, error)
+	Update(ctx context.Context, req *pb.Category) (*pb.Category, error)
+	Delete(ctx context.Context, req *pb.Id) (*pb.Empty, error)
+}

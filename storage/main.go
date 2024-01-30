@@ -12,6 +12,7 @@ type StorageI interface {
 	Staff() repo.StaffI
 	Tag() repo.TagI
 	Genre() repo.GenreI
+	Category() repo.CategoryI
 }
 
 type storagePg struct {
@@ -19,6 +20,7 @@ type storagePg struct {
 	staff    repo.StaffI
 	tag      repo.TagI
 	genre    repo.GenreI
+	category repo.CategoryI
 }
 
 func New(db *db.Postgres, log logger.Logger) StorageI {
@@ -27,6 +29,7 @@ func New(db *db.Postgres, log logger.Logger) StorageI {
 		staff:    postgres.NewStaffRepo(db, log),
 		tag:      postgres.NewTagRepo(db, log),
 		genre:    postgres.NewGenreRepo(db, log),
+		category: postgres.NewCategoryRepo(db, log),
 	}
 }
 
@@ -44,4 +47,8 @@ func (s *storagePg) Tag() repo.TagI {
 
 func (s *storagePg) Genre() repo.GenreI {
 	return s.genre
+}
+
+func (s *storagePg) Category() repo.CategoryI {
+	return s.category
 }

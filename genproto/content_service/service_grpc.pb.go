@@ -969,3 +969,241 @@ var GenreService_ServiceDesc = grpc.ServiceDesc{
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "service.proto",
 }
+
+const (
+	CategoryService_Create_FullMethodName = "/content_service.CategoryService/Create"
+	CategoryService_Get_FullMethodName    = "/content_service.CategoryService/Get"
+	CategoryService_Find_FullMethodName   = "/content_service.CategoryService/Find"
+	CategoryService_Update_FullMethodName = "/content_service.CategoryService/Update"
+	CategoryService_Delete_FullMethodName = "/content_service.CategoryService/Delete"
+)
+
+// CategoryServiceClient is the client API for CategoryService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type CategoryServiceClient interface {
+	Create(ctx context.Context, in *Category, opts ...grpc.CallOption) (*Category, error)
+	Get(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Category, error)
+	Find(ctx context.Context, in *GetListFilter, opts ...grpc.CallOption) (*Categories, error)
+	Update(ctx context.Context, in *Category, opts ...grpc.CallOption) (*Category, error)
+	Delete(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Empty, error)
+}
+
+type categoryServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewCategoryServiceClient(cc grpc.ClientConnInterface) CategoryServiceClient {
+	return &categoryServiceClient{cc}
+}
+
+func (c *categoryServiceClient) Create(ctx context.Context, in *Category, opts ...grpc.CallOption) (*Category, error) {
+	out := new(Category)
+	err := c.cc.Invoke(ctx, CategoryService_Create_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *categoryServiceClient) Get(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Category, error) {
+	out := new(Category)
+	err := c.cc.Invoke(ctx, CategoryService_Get_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *categoryServiceClient) Find(ctx context.Context, in *GetListFilter, opts ...grpc.CallOption) (*Categories, error) {
+	out := new(Categories)
+	err := c.cc.Invoke(ctx, CategoryService_Find_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *categoryServiceClient) Update(ctx context.Context, in *Category, opts ...grpc.CallOption) (*Category, error) {
+	out := new(Category)
+	err := c.cc.Invoke(ctx, CategoryService_Update_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *categoryServiceClient) Delete(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Empty, error) {
+	out := new(Empty)
+	err := c.cc.Invoke(ctx, CategoryService_Delete_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// CategoryServiceServer is the server API for CategoryService service.
+// All implementations must embed UnimplementedCategoryServiceServer
+// for forward compatibility
+type CategoryServiceServer interface {
+	Create(context.Context, *Category) (*Category, error)
+	Get(context.Context, *Id) (*Category, error)
+	Find(context.Context, *GetListFilter) (*Categories, error)
+	Update(context.Context, *Category) (*Category, error)
+	Delete(context.Context, *Id) (*Empty, error)
+	mustEmbedUnimplementedCategoryServiceServer()
+}
+
+// UnimplementedCategoryServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedCategoryServiceServer struct {
+}
+
+func (UnimplementedCategoryServiceServer) Create(context.Context, *Category) (*Category, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedCategoryServiceServer) Get(context.Context, *Id) (*Category, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+func (UnimplementedCategoryServiceServer) Find(context.Context, *GetListFilter) (*Categories, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Find not implemented")
+}
+func (UnimplementedCategoryServiceServer) Update(context.Context, *Category) (*Category, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedCategoryServiceServer) Delete(context.Context, *Id) (*Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+func (UnimplementedCategoryServiceServer) mustEmbedUnimplementedCategoryServiceServer() {}
+
+// UnsafeCategoryServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to CategoryServiceServer will
+// result in compilation errors.
+type UnsafeCategoryServiceServer interface {
+	mustEmbedUnimplementedCategoryServiceServer()
+}
+
+func RegisterCategoryServiceServer(s grpc.ServiceRegistrar, srv CategoryServiceServer) {
+	s.RegisterService(&CategoryService_ServiceDesc, srv)
+}
+
+func _CategoryService_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Category)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CategoryServiceServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CategoryService_Create_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CategoryServiceServer).Create(ctx, req.(*Category))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CategoryService_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Id)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CategoryServiceServer).Get(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CategoryService_Get_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CategoryServiceServer).Get(ctx, req.(*Id))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CategoryService_Find_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetListFilter)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CategoryServiceServer).Find(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CategoryService_Find_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CategoryServiceServer).Find(ctx, req.(*GetListFilter))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CategoryService_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Category)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CategoryServiceServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CategoryService_Update_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CategoryServiceServer).Update(ctx, req.(*Category))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CategoryService_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Id)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CategoryServiceServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CategoryService_Delete_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CategoryServiceServer).Delete(ctx, req.(*Id))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// CategoryService_ServiceDesc is the grpc.ServiceDesc for CategoryService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var CategoryService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "content_service.CategoryService",
+	HandlerType: (*CategoryServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Create",
+			Handler:    _CategoryService_Create_Handler,
+		},
+		{
+			MethodName: "Get",
+			Handler:    _CategoryService_Get_Handler,
+		},
+		{
+			MethodName: "Find",
+			Handler:    _CategoryService_Find_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _CategoryService_Update_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _CategoryService_Delete_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "service.proto",
+}
