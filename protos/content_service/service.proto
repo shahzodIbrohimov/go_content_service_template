@@ -1,0 +1,15 @@
+syntax="proto3";
+
+package content_service;
+option go_package ="genproto/content_service";
+
+import "position.proto";
+import "common.proto";
+
+service PositionService {
+    rpc Create(Position) returns (Position) {};
+    rpc Get(Id) returns (Position) {};
+    rpc Find(GetListFilter) returns (Positions) {};
+    rpc Update(Position) returns (Position) {};
+    rpc Delete(Id) returns (Empty) {};
+}
