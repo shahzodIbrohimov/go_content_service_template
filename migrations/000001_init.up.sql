@@ -42,7 +42,7 @@ CREATE TABLE staffs (
   deleted_at TIMESTAMP WITHOUT TIME ZONE
 );
 
-CREATE TABLE stuff_translates (
+CREATE TABLE staff_translates (
   id uuid PRIMARY KEY,
   lang language_code NOT NULL,
   first_name varchar NOT NULL,
@@ -51,5 +51,6 @@ CREATE TABLE stuff_translates (
   staff_id uuid NOT NULL,
   created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT NOW(),
   updated_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT NOW(),
-  deleted_at TIMESTAMP WITHOUT TIME ZONE
+  deleted_at TIMESTAMP WITHOUT TIME ZONE,
+  CONSTRAINT unique_staff_id_lang UNIQUE (staff_id, lang)
 );

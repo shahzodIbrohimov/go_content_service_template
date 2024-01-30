@@ -255,3 +255,241 @@ var PositionService_ServiceDesc = grpc.ServiceDesc{
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "service.proto",
 }
+
+const (
+	StaffService_Create_FullMethodName = "/content_service.StaffService/Create"
+	StaffService_Get_FullMethodName    = "/content_service.StaffService/Get"
+	StaffService_Find_FullMethodName   = "/content_service.StaffService/Find"
+	StaffService_Update_FullMethodName = "/content_service.StaffService/Update"
+	StaffService_Delete_FullMethodName = "/content_service.StaffService/Delete"
+)
+
+// StaffServiceClient is the client API for StaffService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type StaffServiceClient interface {
+	Create(ctx context.Context, in *Staff, opts ...grpc.CallOption) (*Staff, error)
+	Get(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Staff, error)
+	Find(ctx context.Context, in *GetListFilter, opts ...grpc.CallOption) (*Staffs, error)
+	Update(ctx context.Context, in *Staff, opts ...grpc.CallOption) (*Staff, error)
+	Delete(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Empty, error)
+}
+
+type staffServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewStaffServiceClient(cc grpc.ClientConnInterface) StaffServiceClient {
+	return &staffServiceClient{cc}
+}
+
+func (c *staffServiceClient) Create(ctx context.Context, in *Staff, opts ...grpc.CallOption) (*Staff, error) {
+	out := new(Staff)
+	err := c.cc.Invoke(ctx, StaffService_Create_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *staffServiceClient) Get(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Staff, error) {
+	out := new(Staff)
+	err := c.cc.Invoke(ctx, StaffService_Get_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *staffServiceClient) Find(ctx context.Context, in *GetListFilter, opts ...grpc.CallOption) (*Staffs, error) {
+	out := new(Staffs)
+	err := c.cc.Invoke(ctx, StaffService_Find_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *staffServiceClient) Update(ctx context.Context, in *Staff, opts ...grpc.CallOption) (*Staff, error) {
+	out := new(Staff)
+	err := c.cc.Invoke(ctx, StaffService_Update_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *staffServiceClient) Delete(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Empty, error) {
+	out := new(Empty)
+	err := c.cc.Invoke(ctx, StaffService_Delete_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// StaffServiceServer is the server API for StaffService service.
+// All implementations must embed UnimplementedStaffServiceServer
+// for forward compatibility
+type StaffServiceServer interface {
+	Create(context.Context, *Staff) (*Staff, error)
+	Get(context.Context, *Id) (*Staff, error)
+	Find(context.Context, *GetListFilter) (*Staffs, error)
+	Update(context.Context, *Staff) (*Staff, error)
+	Delete(context.Context, *Id) (*Empty, error)
+	mustEmbedUnimplementedStaffServiceServer()
+}
+
+// UnimplementedStaffServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedStaffServiceServer struct {
+}
+
+func (UnimplementedStaffServiceServer) Create(context.Context, *Staff) (*Staff, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedStaffServiceServer) Get(context.Context, *Id) (*Staff, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+func (UnimplementedStaffServiceServer) Find(context.Context, *GetListFilter) (*Staffs, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Find not implemented")
+}
+func (UnimplementedStaffServiceServer) Update(context.Context, *Staff) (*Staff, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedStaffServiceServer) Delete(context.Context, *Id) (*Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+func (UnimplementedStaffServiceServer) mustEmbedUnimplementedStaffServiceServer() {}
+
+// UnsafeStaffServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to StaffServiceServer will
+// result in compilation errors.
+type UnsafeStaffServiceServer interface {
+	mustEmbedUnimplementedStaffServiceServer()
+}
+
+func RegisterStaffServiceServer(s grpc.ServiceRegistrar, srv StaffServiceServer) {
+	s.RegisterService(&StaffService_ServiceDesc, srv)
+}
+
+func _StaffService_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Staff)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StaffServiceServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StaffService_Create_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StaffServiceServer).Create(ctx, req.(*Staff))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _StaffService_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Id)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StaffServiceServer).Get(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StaffService_Get_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StaffServiceServer).Get(ctx, req.(*Id))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _StaffService_Find_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetListFilter)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StaffServiceServer).Find(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StaffService_Find_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StaffServiceServer).Find(ctx, req.(*GetListFilter))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _StaffService_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Staff)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StaffServiceServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StaffService_Update_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StaffServiceServer).Update(ctx, req.(*Staff))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _StaffService_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Id)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StaffServiceServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StaffService_Delete_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StaffServiceServer).Delete(ctx, req.(*Id))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// StaffService_ServiceDesc is the grpc.ServiceDesc for StaffService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var StaffService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "content_service.StaffService",
+	HandlerType: (*StaffServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Create",
+			Handler:    _StaffService_Create_Handler,
+		},
+		{
+			MethodName: "Get",
+			Handler:    _StaffService_Get_Handler,
+		},
+		{
+			MethodName: "Find",
+			Handler:    _StaffService_Find_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _StaffService_Update_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _StaffService_Delete_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "service.proto",
+}

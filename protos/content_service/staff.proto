@@ -1,0 +1,22 @@
+syntax="proto3";
+
+package content_service;
+option go_package ="genproto/content_service";
+
+message Staff {
+    string id = 1;
+    string position_id = 2;
+    string slug = 3;
+    string photo = 4;
+    string lang = 5;
+    string first_name = 6;
+    string last_name = 7;
+    string biography = 8;
+    string created_at = 9;
+    string updated_at = 10;
+}
+
+message Staffs {
+    int32 count = 1;
+    repeated Staff items = 2;
+}

@@ -6,6 +6,7 @@ option go_package ="genproto/content_service";
 message Id {
     string id = 1;
     string slug = 2;
+    string lang = 3;
 }
 
 message GetListFilter {
@@ -13,6 +14,7 @@ message GetListFilter {
     int32 limit = 2;
     repeated SortBy sorts = 3;
     repeated Filters filters = 4;
+    string lang = 5;
 }
 
 message Filters {

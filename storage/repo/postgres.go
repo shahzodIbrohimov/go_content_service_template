@@ -13,3 +13,11 @@ type PositionI interface {
 	Update(ctx context.Context, req *pb.Position) (*pb.Position, error)
 	Delete(ctx context.Context, req *pb.Id) (*pb.Empty, error)
 }
+
+type StaffI interface {
+	Create(ctx context.Context, req *pb.Staff) (*pb.Staff, error)
+	Get(ctx context.Context, req *pb.Id) (*pb.Staff, error)
+	Find(ctx context.Context, req *pb.GetListFilter) (*pb.Staffs, error)
+	Update(ctx context.Context, req *pb.Staff) (*pb.Staff, error)
+	Delete(ctx context.Context, req *pb.Id) (*pb.Empty, error)
+}
