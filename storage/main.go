@@ -14,25 +14,28 @@ type StorageI interface {
 	Genre() repo.GenreI
 	Category() repo.CategoryI
 	Country() repo.CountryI
+	ContentProvider() repo.ContentProviderI
 }
 
 type storagePg struct {
-	position repo.PositionI
-	staff    repo.StaffI
-	tag      repo.TagI
-	genre    repo.GenreI
-	category repo.CategoryI
-	country  repo.CountryI
+	position        repo.PositionI
+	staff           repo.StaffI
+	tag             repo.TagI
+	genre           repo.GenreI
+	category        repo.CategoryI
+	country         repo.CountryI
+	contentProvider repo.ContentProviderI
 }
 
 func New(db *db.Postgres, log logger.Logger) StorageI {
 	return &storagePg{
-		position: postgres.NewPositionRepo(db, log),
-		staff:    postgres.NewStaffRepo(db, log),
-		tag:      postgres.NewTagRepo(db, log),
-		genre:    postgres.NewGenreRepo(db, log),
-		category: postgres.NewCategoryRepo(db, log),
-		country:  postgres.NewCountryRepo(db, log),
+		position:        postgres.NewPositionRepo(db, log),
+		staff:           postgres.NewStaffRepo(db, log),
+		tag:             postgres.NewTagRepo(db, log),
+		genre:           postgres.NewGenreRepo(db, log),
+		category:        postgres.NewCategoryRepo(db, log),
+		country:         postgres.NewCountryRepo(db, log),
+		contentProvider: postgres.NewContentProviderRepo(db, log),
 	}
 }
 
@@ -58,4 +61,8 @@ func (s *storagePg) Category() repo.CategoryI {
 
 func (s *storagePg) Country() repo.CountryI {
 	return s.country
+}
+
+func (s *storagePg) ContentProvider() repo.ContentProviderI {
+	return s.contentProvider
 }

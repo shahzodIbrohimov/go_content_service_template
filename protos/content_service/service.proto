@@ -9,6 +9,7 @@ import "tag.proto";
 import "genre.proto";
 import "category.proto";
 import "country.proto";
+import "content_provider.proto";
 import "common.proto";
 
 
@@ -57,5 +58,13 @@ service CountryService {
     rpc Get(Id) returns (Country) {};
     rpc Find(GetListFilter) returns (Countries) {};
     rpc Update(Country) returns (Country) {};
+    rpc Delete(Id) returns (Empty) {};
+}
+
+service ContentProviderService {
+    rpc Create(ContentProvider) returns (ContentProvider) {};
+    rpc Get(Id) returns (ContentProvider) {};
+    rpc Find(GetListFilter) returns (ContentProviders) {};
+    rpc Update(ContentProvider) returns (ContentProvider) {};
     rpc Delete(Id) returns (Empty) {};
 }

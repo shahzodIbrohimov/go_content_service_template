@@ -53,3 +53,11 @@ type CountryI interface {
 	Update(ctx context.Context, req *pb.Country) (*pb.Country, error)
 	Delete(ctx context.Context, req *pb.Id) (*pb.Empty, error)
 }
+
+type ContentProviderI interface {
+	Create(ctx context.Context, req *pb.ContentProvider) (*pb.ContentProvider, error)
+	Get(ctx context.Context, req *pb.Id) (*pb.ContentProvider, error)
+	Find(ctx context.Context, req *pb.GetListFilter) (*pb.ContentProviders, error)
+	Update(ctx context.Context, req *pb.ContentProvider) (*pb.ContentProvider, error)
+	Delete(ctx context.Context, req *pb.Id) (*pb.Empty, error)
+}

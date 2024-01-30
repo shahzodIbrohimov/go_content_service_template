@@ -1445,3 +1445,242 @@ var CountryService_ServiceDesc = grpc.ServiceDesc{
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "service.proto",
 }
+
+const (
+	ContentProviderService_Create_FullMethodName = "/content_service.ContentProviderService/Create"
+	ContentProviderService_Get_FullMethodName    = "/content_service.ContentProviderService/Get"
+	ContentProviderService_Find_FullMethodName   = "/content_service.ContentProviderService/Find"
+	ContentProviderService_Update_FullMethodName = "/content_service.ContentProviderService/Update"
+	ContentProviderService_Delete_FullMethodName = "/content_service.ContentProviderService/Delete"
+)
+
+// ContentProviderServiceClient is the client API for ContentProviderService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type ContentProviderServiceClient interface {
+	Create(ctx context.Context, in *ContentProvider, opts ...grpc.CallOption) (*ContentProvider, error)
+	Get(ctx context.Context, in *Id, opts ...grpc.CallOption) (*ContentProvider, error)
+	Find(ctx context.Context, in *GetListFilter, opts ...grpc.CallOption) (*ContentProviders, error)
+	Update(ctx context.Context, in *ContentProvider, opts ...grpc.CallOption) (*ContentProvider, error)
+	Delete(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Empty, error)
+}
+
+type contentProviderServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewContentProviderServiceClient(cc grpc.ClientConnInterface) ContentProviderServiceClient {
+	return &contentProviderServiceClient{cc}
+}
+
+func (c *contentProviderServiceClient) Create(ctx context.Context, in *ContentProvider, opts ...grpc.CallOption) (*ContentProvider, error) {
+	out := new(ContentProvider)
+	err := c.cc.Invoke(ctx, ContentProviderService_Create_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *contentProviderServiceClient) Get(ctx context.Context, in *Id, opts ...grpc.CallOption) (*ContentProvider, error) {
+	out := new(ContentProvider)
+	err := c.cc.Invoke(ctx, ContentProviderService_Get_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *contentProviderServiceClient) Find(ctx context.Context, in *GetListFilter, opts ...grpc.CallOption) (*ContentProviders, error) {
+	out := new(ContentProviders)
+	err := c.cc.Invoke(ctx, ContentProviderService_Find_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *contentProviderServiceClient) Update(ctx context.Context, in *ContentProvider, opts ...grpc.CallOption) (*ContentProvider, error) {
+	out := new(ContentProvider)
+	err := c.cc.Invoke(ctx, ContentProviderService_Update_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *contentProviderServiceClient) Delete(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Empty, error) {
+	out := new(Empty)
+	err := c.cc.Invoke(ctx, ContentProviderService_Delete_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// ContentProviderServiceServer is the server API for ContentProviderService service.
+// All implementations must embed UnimplementedContentProviderServiceServer
+// for forward compatibility
+type ContentProviderServiceServer interface {
+	Create(context.Context, *ContentProvider) (*ContentProvider, error)
+	Get(context.Context, *Id) (*ContentProvider, error)
+	Find(context.Context, *GetListFilter) (*ContentProviders, error)
+	Update(context.Context, *ContentProvider) (*ContentProvider, error)
+	Delete(context.Context, *Id) (*Empty, error)
+	mustEmbedUnimplementedContentProviderServiceServer()
+}
+
+// UnimplementedContentProviderServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedContentProviderServiceServer struct {
+}
+
+func (UnimplementedContentProviderServiceServer) Create(context.Context, *ContentProvider) (*ContentProvider, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedContentProviderServiceServer) Get(context.Context, *Id) (*ContentProvider, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+func (UnimplementedContentProviderServiceServer) Find(context.Context, *GetListFilter) (*ContentProviders, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Find not implemented")
+}
+func (UnimplementedContentProviderServiceServer) Update(context.Context, *ContentProvider) (*ContentProvider, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedContentProviderServiceServer) Delete(context.Context, *Id) (*Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+func (UnimplementedContentProviderServiceServer) mustEmbedUnimplementedContentProviderServiceServer() {
+}
+
+// UnsafeContentProviderServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to ContentProviderServiceServer will
+// result in compilation errors.
+type UnsafeContentProviderServiceServer interface {
+	mustEmbedUnimplementedContentProviderServiceServer()
+}
+
+func RegisterContentProviderServiceServer(s grpc.ServiceRegistrar, srv ContentProviderServiceServer) {
+	s.RegisterService(&ContentProviderService_ServiceDesc, srv)
+}
+
+func _ContentProviderService_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ContentProvider)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ContentProviderServiceServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ContentProviderService_Create_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ContentProviderServiceServer).Create(ctx, req.(*ContentProvider))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ContentProviderService_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Id)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ContentProviderServiceServer).Get(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ContentProviderService_Get_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ContentProviderServiceServer).Get(ctx, req.(*Id))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ContentProviderService_Find_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetListFilter)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ContentProviderServiceServer).Find(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ContentProviderService_Find_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ContentProviderServiceServer).Find(ctx, req.(*GetListFilter))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ContentProviderService_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ContentProvider)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ContentProviderServiceServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ContentProviderService_Update_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ContentProviderServiceServer).Update(ctx, req.(*ContentProvider))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ContentProviderService_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Id)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ContentProviderServiceServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ContentProviderService_Delete_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ContentProviderServiceServer).Delete(ctx, req.(*Id))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// ContentProviderService_ServiceDesc is the grpc.ServiceDesc for ContentProviderService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var ContentProviderService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "content_service.ContentProviderService",
+	HandlerType: (*ContentProviderServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Create",
+			Handler:    _ContentProviderService_Create_Handler,
+		},
+		{
+			MethodName: "Get",
+			Handler:    _ContentProviderService_Get_Handler,
+		},
+		{
+			MethodName: "Find",
+			Handler:    _ContentProviderService_Find_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _ContentProviderService_Update_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _ContentProviderService_Delete_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "service.proto",
+}

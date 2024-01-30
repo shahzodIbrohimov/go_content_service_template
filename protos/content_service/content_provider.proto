@@ -1,0 +1,22 @@
+syntax="proto3";
+
+package content_service;
+option go_package ="genproto/content_service";
+
+import "common.proto";
+
+message ContentProvider {
+    string id = 1;
+    MultiLanguage title = 2;
+    bool active = 3;
+    string slug = 4;
+    string logo = 5;
+    int32 order = 6;
+    string created_at = 7;
+    string updated_at = 8;
+}
+
+message ContentProviders {
+    int32 count = 1;
+    repeated ContentProvider items = 2;
+}

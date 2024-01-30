@@ -19,12 +19,13 @@ import (
 )
 
 type GRPCService struct {
-	PositionService *services.PositionService
-	StaffService    *services.StaffService
-	TagService      *services.TagService
-	GenreService    *services.GenreService
-	CategoryService *services.CategoryService
-	CountryService  *services.CountryService
+	PositionService        *services.PositionService
+	StaffService           *services.StaffService
+	TagService             *services.TagService
+	GenreService           *services.GenreService
+	CategoryService        *services.CategoryService
+	CountryService         *services.CountryService
+	ContentProviderService *services.ContentProviderService
 }
 
 func New(cfg *config.Config, log l.Logger) (*GRPCService, error) {
@@ -41,12 +42,13 @@ func New(cfg *config.Config, log l.Logger) (*GRPCService, error) {
 	}
 
 	return &GRPCService{
-		PositionService: services.NewPositionService(storageObj, log, grpcClient),
-		StaffService:    services.NewStaffService(storageObj, log, grpcClient),
-		TagService:      services.NewTagService(storageObj, log, grpcClient),
-		GenreService:    services.NewGenreService(storageObj, log, grpcClient),
-		CategoryService: services.NewCategoryService(storageObj, log, grpcClient),
-		CountryService:  services.NewCountryService(storageObj, log, grpcClient),
+		PositionService:        services.NewPositionService(storageObj, log, grpcClient),
+		StaffService:           services.NewStaffService(storageObj, log, grpcClient),
+		TagService:             services.NewTagService(storageObj, log, grpcClient),
+		GenreService:           services.NewGenreService(storageObj, log, grpcClient),
+		CategoryService:        services.NewCategoryService(storageObj, log, grpcClient),
+		CountryService:         services.NewCountryService(storageObj, log, grpcClient),
+		ContentProviderService: services.NewContentProviderService(storageObj, log, grpcClient),
 	}, nil
 }
 
@@ -59,7 +61,8 @@ func (service *GRPCService) Run(logger l.Logger, cfg *config.Config) {
 	pb.RegisterGenreServiceServer(server, service.GenreService)
 	pb.RegisterCategoryServiceServer(server, service.CategoryService)
 	pb.RegisterCountryServiceServer(server, service.CountryService)
-
+	pb.RegisterContentProviderServiceServer(server, service.ContentProviderService)
+	
 	listener, err := net.Listen("tcp", cfg.RPCPort)
 	if err != nil {
 		panic("Error while creating listener")
