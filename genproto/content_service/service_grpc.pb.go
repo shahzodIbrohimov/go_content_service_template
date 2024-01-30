@@ -731,3 +731,241 @@ var TagService_ServiceDesc = grpc.ServiceDesc{
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "service.proto",
 }
+
+const (
+	GenreService_Create_FullMethodName = "/content_service.GenreService/Create"
+	GenreService_Get_FullMethodName    = "/content_service.GenreService/Get"
+	GenreService_Find_FullMethodName   = "/content_service.GenreService/Find"
+	GenreService_Update_FullMethodName = "/content_service.GenreService/Update"
+	GenreService_Delete_FullMethodName = "/content_service.GenreService/Delete"
+)
+
+// GenreServiceClient is the client API for GenreService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type GenreServiceClient interface {
+	Create(ctx context.Context, in *Genre, opts ...grpc.CallOption) (*Genre, error)
+	Get(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Genre, error)
+	Find(ctx context.Context, in *GetListFilter, opts ...grpc.CallOption) (*Genres, error)
+	Update(ctx context.Context, in *Genre, opts ...grpc.CallOption) (*Genre, error)
+	Delete(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Empty, error)
+}
+
+type genreServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewGenreServiceClient(cc grpc.ClientConnInterface) GenreServiceClient {
+	return &genreServiceClient{cc}
+}
+
+func (c *genreServiceClient) Create(ctx context.Context, in *Genre, opts ...grpc.CallOption) (*Genre, error) {
+	out := new(Genre)
+	err := c.cc.Invoke(ctx, GenreService_Create_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *genreServiceClient) Get(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Genre, error) {
+	out := new(Genre)
+	err := c.cc.Invoke(ctx, GenreService_Get_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *genreServiceClient) Find(ctx context.Context, in *GetListFilter, opts ...grpc.CallOption) (*Genres, error) {
+	out := new(Genres)
+	err := c.cc.Invoke(ctx, GenreService_Find_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *genreServiceClient) Update(ctx context.Context, in *Genre, opts ...grpc.CallOption) (*Genre, error) {
+	out := new(Genre)
+	err := c.cc.Invoke(ctx, GenreService_Update_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *genreServiceClient) Delete(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Empty, error) {
+	out := new(Empty)
+	err := c.cc.Invoke(ctx, GenreService_Delete_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// GenreServiceServer is the server API for GenreService service.
+// All implementations must embed UnimplementedGenreServiceServer
+// for forward compatibility
+type GenreServiceServer interface {
+	Create(context.Context, *Genre) (*Genre, error)
+	Get(context.Context, *Id) (*Genre, error)
+	Find(context.Context, *GetListFilter) (*Genres, error)
+	Update(context.Context, *Genre) (*Genre, error)
+	Delete(context.Context, *Id) (*Empty, error)
+	mustEmbedUnimplementedGenreServiceServer()
+}
+
+// UnimplementedGenreServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedGenreServiceServer struct {
+}
+
+func (UnimplementedGenreServiceServer) Create(context.Context, *Genre) (*Genre, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedGenreServiceServer) Get(context.Context, *Id) (*Genre, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+func (UnimplementedGenreServiceServer) Find(context.Context, *GetListFilter) (*Genres, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Find not implemented")
+}
+func (UnimplementedGenreServiceServer) Update(context.Context, *Genre) (*Genre, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedGenreServiceServer) Delete(context.Context, *Id) (*Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+func (UnimplementedGenreServiceServer) mustEmbedUnimplementedGenreServiceServer() {}
+
+// UnsafeGenreServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to GenreServiceServer will
+// result in compilation errors.
+type UnsafeGenreServiceServer interface {
+	mustEmbedUnimplementedGenreServiceServer()
+}
+
+func RegisterGenreServiceServer(s grpc.ServiceRegistrar, srv GenreServiceServer) {
+	s.RegisterService(&GenreService_ServiceDesc, srv)
+}
+
+func _GenreService_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Genre)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GenreServiceServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GenreService_Create_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GenreServiceServer).Create(ctx, req.(*Genre))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GenreService_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Id)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GenreServiceServer).Get(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GenreService_Get_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GenreServiceServer).Get(ctx, req.(*Id))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GenreService_Find_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetListFilter)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GenreServiceServer).Find(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GenreService_Find_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GenreServiceServer).Find(ctx, req.(*GetListFilter))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GenreService_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Genre)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GenreServiceServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GenreService_Update_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GenreServiceServer).Update(ctx, req.(*Genre))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GenreService_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Id)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GenreServiceServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GenreService_Delete_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GenreServiceServer).Delete(ctx, req.(*Id))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// GenreService_ServiceDesc is the grpc.ServiceDesc for GenreService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var GenreService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "content_service.GenreService",
+	HandlerType: (*GenreServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Create",
+			Handler:    _GenreService_Create_Handler,
+		},
+		{
+			MethodName: "Get",
+			Handler:    _GenreService_Get_Handler,
+		},
+		{
+			MethodName: "Find",
+			Handler:    _GenreService_Find_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _GenreService_Update_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _GenreService_Delete_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "service.proto",
+}

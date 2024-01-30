@@ -6,6 +6,7 @@ option go_package ="genproto/content_service";
 import "staff.proto";
 import "position.proto";
 import "tag.proto";
+import "genre.proto";
 import "common.proto";
 
 
@@ -30,5 +31,13 @@ service TagService {
     rpc Get(Id) returns (Tag) {};
     rpc Find(GetListFilter) returns (Tags) {};
     rpc Update(Tag) returns (Tag) {};
+    rpc Delete(Id) returns (Empty) {};
+}
+
+service GenreService {
+    rpc Create(Genre) returns (Genre) {};
+    rpc Get(Id) returns (Genre) {};
+    rpc Find(GetListFilter) returns (Genres) {};
+    rpc Update(Genre) returns (Genre) {};
     rpc Delete(Id) returns (Empty) {};
 }

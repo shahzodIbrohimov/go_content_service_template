@@ -29,3 +29,11 @@ type TagI interface {
 	Update(ctx context.Context, req *pb.Tag) (*pb.Tag, error)
 	Delete(ctx context.Context, req *pb.Id) (*pb.Empty, error)
 }
+
+type GenreI interface {
+	Create(ctx context.Context, req *pb.Genre) (*pb.Genre, error)
+	Get(ctx context.Context, req *pb.Id) (*pb.Genre, error)
+	Find(ctx context.Context, req *pb.GetListFilter) (*pb.Genres, error)
+	Update(ctx context.Context, req *pb.Genre) (*pb.Genre, error)
+	Delete(ctx context.Context, req *pb.Id) (*pb.Empty, error)
+}

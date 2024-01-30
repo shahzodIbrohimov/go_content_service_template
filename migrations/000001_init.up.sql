@@ -66,3 +66,17 @@ CREATE TABLE tags (
   updated_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT NOW(),
   deleted_at TIMESTAMP WITHOUT TIME ZONE
 );
+
+CREATE TABLE genres (
+  id uuid NOT NULL,
+  slug varchar UNIQUE NOT NULL,
+  title_uz varchar NOT NULL,
+  title_ru varchar NOT NULL,
+  title_en varchar NOT NULL,
+  photo varchar NOT NULL,
+  active bool NOT NULL,
+  sort_order serial NOT NULL,
+  created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT NOW(),
+  deleted_at TIMESTAMP WITHOUT TIME ZONE
+);
