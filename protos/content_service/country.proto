@@ -1,0 +1,21 @@
+syntax="proto3";
+
+package content_service;
+option go_package ="genproto/content_service";
+
+import "common.proto";
+
+message Country {
+    string id = 1;
+    MultiLanguage title = 2;
+    bool active = 3;
+    string slug = 4;
+    int32 order = 5;
+    string created_at = 6;
+    string updated_at = 7;
+}
+
+message Countries {
+    int32 count = 1;
+    repeated Country items = 2;
+}

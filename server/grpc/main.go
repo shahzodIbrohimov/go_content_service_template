@@ -24,6 +24,7 @@ type GRPCService struct {
 	TagService      *services.TagService
 	GenreService    *services.GenreService
 	CategoryService *services.CategoryService
+	CountryService  *services.CountryService
 }
 
 func New(cfg *config.Config, log l.Logger) (*GRPCService, error) {
@@ -45,6 +46,7 @@ func New(cfg *config.Config, log l.Logger) (*GRPCService, error) {
 		TagService:      services.NewTagService(storageObj, log, grpcClient),
 		GenreService:    services.NewGenreService(storageObj, log, grpcClient),
 		CategoryService: services.NewCategoryService(storageObj, log, grpcClient),
+		CountryService:  services.NewCountryService(storageObj, log, grpcClient),
 	}, nil
 }
 
@@ -56,6 +58,7 @@ func (service *GRPCService) Run(logger l.Logger, cfg *config.Config) {
 	pb.RegisterTagServiceServer(server, service.TagService)
 	pb.RegisterGenreServiceServer(server, service.GenreService)
 	pb.RegisterCategoryServiceServer(server, service.CategoryService)
+	pb.RegisterCountryServiceServer(server, service.CountryService)
 
 	listener, err := net.Listen("tcp", cfg.RPCPort)
 	if err != nil {

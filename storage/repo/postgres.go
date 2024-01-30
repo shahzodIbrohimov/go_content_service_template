@@ -45,3 +45,11 @@ type CategoryI interface {
 	Update(ctx context.Context, req *pb.Category) (*pb.Category, error)
 	Delete(ctx context.Context, req *pb.Id) (*pb.Empty, error)
 }
+
+type CountryI interface {
+	Create(ctx context.Context, req *pb.Country) (*pb.Country, error)
+	Get(ctx context.Context, req *pb.Id) (*pb.Country, error)
+	Find(ctx context.Context, req *pb.GetListFilter) (*pb.Countries, error)
+	Update(ctx context.Context, req *pb.Country) (*pb.Country, error)
+	Delete(ctx context.Context, req *pb.Id) (*pb.Empty, error)
+}

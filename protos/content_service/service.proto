@@ -8,6 +8,7 @@ import "position.proto";
 import "tag.proto";
 import "genre.proto";
 import "category.proto";
+import "country.proto";
 import "common.proto";
 
 
@@ -48,5 +49,13 @@ service CategoryService {
     rpc Get(Id) returns (Category) {};
     rpc Find(GetListFilter) returns (Categories) {};
     rpc Update(Category) returns (Category) {};
+    rpc Delete(Id) returns (Empty) {};
+}
+
+service CountryService {
+    rpc Create(Country) returns (Country) {};
+    rpc Get(Id) returns (Country) {};
+    rpc Find(GetListFilter) returns (Countries) {};
+    rpc Update(Country) returns (Country) {};
     rpc Delete(Id) returns (Empty) {};
 }
